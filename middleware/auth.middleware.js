@@ -30,7 +30,8 @@ module.exports = {
             const access_token = req.get('Authorization');
 
             if (!access_token) {
-                throw new Error(errorMessages.TOKEN_IS_REQUIRED);
+                // throw new Error(errorMessages.TOKEN_IS_REQUIRED);
+                throw new Error('ACCESS TOKEN IS REQUIRED');
             }
 
             jwt.verify(access_token, JWT_SECRET, (err) => {
@@ -44,7 +45,6 @@ module.exports = {
             if (!tokens) {
                 throw new Error(errorMessages.TOKEN_IS_REQUIRED);
             }
-
             req.tokens = tokens._user_id;
 
             next();
@@ -56,6 +56,7 @@ module.exports = {
     checkRefreshTokenMiddleware: async (req, res, next) => {
         try {
             const refresh_token = req.get('Authorization');
+            console.log(refresh_token);
 
             if (!refresh_token) {
                 throw new Error(errorMessages.TOKEN_IS_REQUIRED);

@@ -38,8 +38,6 @@ module.exports = {
         ua: 'АВТО ВИДАДЕНО!'
     },
 
-    TOKEN_IS_REQUIRED: {
-        en: 'TOKEN IS REQUIRED'
-    }
+    TOKEN_IS_REQUIRED: 'TOKEN IS REQUIRED'
 
 };

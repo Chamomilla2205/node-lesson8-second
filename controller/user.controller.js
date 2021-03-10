@@ -48,13 +48,14 @@ module.exports = {
         try {
             const { userId } = req.params;
             const { preferLanguage = 'en' } = req.query;
-
-            if (userId !== req.user.id) {
-                throw new Error('Unauthorized');
+            const { tokens } = req;
+            console.log(tokens._id);
+            console.log(userId);
+            if (userId.toString() !== tokens._id.toString()) {
+                throw new Error('Unauthorized1');
             }
-            const { email, name } = await userService.findUserById(userId);
 
-            await mailService.sendEmail(email, emailActionsEnum.USER_DELETED, { username: name });
+            await mailService.sendEmail(tokens.email, emailActionsEnum.USER_DELETED, { username: tokens.name });
 
             await userService.deleteUserById(userId);
 
